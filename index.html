@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Верификација Е-Визе | Портал за електронску идентификацију (eID.gov.rs)</title>
     <style>
-        /* === GLOBAL STYLES (Based on eid.gov.rs) === */
+        /* === GLOBAL STYLES === */
         :root {
-            --primary-blue: #00305f; /* Dark official blue */
-            --secondary-blue: #0056b3; /* Highlight blue */
-            --light-grey: #f7f9fa; /* Light background grey */
-            --border-grey: #dde2e6; /* Border grey */
-            --text-grey: #6c757d; /* Lighter text grey */
-            --success-green: #28a745; /* Green status bar */
-            --primary-green: #157347; /* Button green */
+            --primary-blue: #00305f;
+            --secondary-blue: #0056b3;
+            --light-grey: #f7f9fa;
+            --border-grey: #dde2e6;
+            --text-grey: #6c757d;
+            --success-green: #28a745;
+            --primary-green: #157347;
         }
 
         body {
@@ -28,15 +28,14 @@
         }
 
         .container {
-            flex: 1;
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 15px; /* Side padding for mobile */
+            padding: 0 15px;
             box-sizing: border-box;
         }
 
-        /* === TOP BAR (Language selector area) === */
+        /* === TOP BAR === */
         .top-bar {
             background-color: #f7f9fa;
             border-bottom: 1px solid var(--border-grey);
@@ -48,14 +47,9 @@
             font-size: 14px;
             color: #333;
             margin-right: 15px;
-            cursor: pointer;
         }
 
-        .language-selector::after {
-            content: " \25BE"; /* Downward arrow */
-        }
-
-        /* === HEADER SECTION === */
+        /* === HEADER === */
         header {
             background-color: #fff;
             padding: 20px 0;
@@ -65,170 +59,42 @@
         .header-content {
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
 
-        .header-logo-area {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-logo-circle {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--border-grey);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--primary-blue);
-            margin-right: 15px;
-        }
-
-        .header-text-area h1 {
-            font-size: 26px;
-            margin: 0;
-            color: var(--primary-blue);
-            font-weight: bold;
-        }
-
-        .header-text-area p {
-            font-size: 16px;
-            margin: 0;
-            color: var(--text-grey);
+        .eid-main-logo {
+            height: 60px; /* Adjust based on your image aspect ratio */
+            width: auto;
+            margin-right: 20px;
         }
 
         .header-nav {
             margin-top: 15px;
             border-top: 1px solid var(--border-grey);
-            padding-top: 15px;
+            padding: 15px 0 0 0;
             display: flex;
             justify-content: center;
             list-style: none;
-            padding-left: 0;
-            margin-bottom: 0;
         }
 
         .header-nav li {
             font-size: 15px;
-            color: #333;
-            padding: 0 10px;
-            position: relative;
+            padding: 0 12px;
+            border-right: 1px solid var(--border-grey);
         }
 
-        .header-nav li:not(:last-child)::after {
-            content: "|";
-            position: absolute;
-            right: 0;
-            color: var(--border-grey);
-        }
+        .header-nav li:last-child { border-right: none; }
+        .header-nav li a { text-decoration: none; color: #333; }
 
-        .header-nav li a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .header-nav li a:hover {
-            color: var(--secondary-blue);
-        }
-
-        /* === MAIN CONTENT AREA === */
-        main {
-            padding: 30px 0;
-        }
-
+        /* === CONTENT === */
+        main { padding: 30px 0; flex: 1; }
+        
         .page-card {
             background: #fff;
             padding: 40px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-radius: 8px;
-            margin-bottom: 30px;
         }
 
-        .page-header-title {
-            font-size: 28px;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--primary-blue);
-            padding-bottom: 15px;
-        }
-
-        /* === SEARCH SECTION === */
-        #search-section {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .search-box-official {
-            border: 1px solid var(--border-grey);
-            padding: 30px;
-            border-radius: 4px;
-            background-color: var(--light-grey);
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #000;
-        }
-
-        .input-subtext {
-            color: var(--text-grey);
-            font-size: 14px;
-            margin-top: -8px;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .input-subtext.English {
-            font-style: italic;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-grey);
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        .verify-btn-official {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .verify-btn-official:hover {
-            background-color: #11603e;
-        }
-
-        .error-text {
-            color: #d9534f;
-            text-align: center;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        /* === RESULTS SECTION === */
-        /* Green Verification Bar */
         .verification-bar-official {
             background-color: var(--success-green);
             color: white;
@@ -238,253 +104,88 @@
             align-items: center;
             margin-bottom: 30px;
             font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .status-icon-check {
-            font-size: 28px;
-            margin-right: 18px;
-        }
+        .status-icon-check { font-size: 28px; margin-right: 18px; }
 
-        .status-text-bilingual {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .status-text-en {
-            font-weight: normal;
-            font-size: 16px;
-        }
-
-        /* Main Data Layout */
-        .visa-data-container {
-            display: flex;
-            gap: 30px;
-        }
-
-        .visa-data-main {
-            flex: 3;
-        }
-
-        .visa-data-photo {
-            flex: 1;
-            text-align: right;
-            margin-top: -10px; /* Offset the title padding */
-        }
+        .visa-data-container { display: flex; gap: 30px; }
+        .visa-data-main { flex: 3; }
+        .visa-data-photo { flex: 1; text-align: right; }
 
         .visa-photo {
             width: 160px;
-            height: auto;
             border: 4px solid #eee;
-            border-radius: 4px;
-            padding: 6px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        /* Details Sections & Bilingual Tables */
-        .details-data-group {
-            margin-bottom: 30px;
-        }
-
-        .details-group-title {
-            font-size: 18px;
-            color: var(--primary-blue);
-            margin-bottom: 12px;
-            font-weight: bold;
+            padding: 5px;
+            background: #fff;
         }
 
         .bilingual-table {
             width: 100%;
             border-collapse: collapse;
             border: 1px solid var(--border-grey);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .bilingual-table td {
-            padding: 12px 15px;
-            vertical-align: top;
+            padding: 12px;
             border-bottom: 1px solid var(--border-grey);
         }
 
-        .bilingual-table tr:nth-child(even) {
-            background-color: #fcfcfc;
-        }
-
         .table-label {
-            width: 38%;
             background-color: #f9f9f9;
+            width: 40%;
             font-weight: bold;
-            color: #555;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .table-label-en {
+            display: block;
             font-weight: normal;
             color: var(--text-grey);
             font-style: italic;
-            display: block;
-            margin-top: 2px;
         }
 
-        .table-value {
-            width: 62%;
-            font-weight: bold;
-            font-size: 15px;
-            color: #000;
-        }
+        .table-value { font-weight: bold; color: var(--primary-blue); }
 
-        /* Highlighting Key Values */
-        .value.highlight-blue, .value.name-value {
-            color: var(--primary-blue);
-        }
-
-        .value.document-value {
-            color: #c9302c; /* Red highlight */
-        }
-
-        /* Official Visa Notification Text area */
-        .official-notification {
-            margin-top: 30px;
-            border-top: 1px solid var(--border-grey);
-            padding-top: 20px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .notification-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .notification-text {
-            color: var(--text-grey);
-            margin-bottom: 15px;
-        }
-
-        .notification-text.English {
-            font-style: italic;
-        }
-
-        .back-btn-official {
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: var(--border-grey);
-            color: #333;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        /* === FOOTER SECTION (Based on eid.gov.rs) === */
-        footer {
-            margin-top: auto;
-            width: 100%;
-        }
-
-        /* Blue Top-of-page bar */
+        /* === FOOTER === */
         .footer-top-bar {
             background-color: var(--primary-blue);
             color: white;
             padding: 10px 0;
             text-align: right;
-            cursor: pointer;
         }
 
-        .top-of-page-link {
-            font-size: 14px;
-            margin-right: 15px;
-        }
-
-        /* Main Footer Area */
         .footer-main-official {
             background-color: #f7f9fa;
             border-top: 1px solid var(--border-grey);
             padding: 30px 0;
-            font-size: 14px;
-            color: var(--text-grey);
         }
 
-        .footer-logo-official-area {
+        .footer-logo-row {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        /* Coat of Arms placeholder - you would replace this with your file */
-        .coat-of-arms-placeholder {
-            width: 50px;
-            height: 60px;
-            background-color: #eee;
-            border: 1px solid #ccc;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 10px;
-            text-align: center;
+        .footer-crest {
+            height: 70px;
+            margin-right: 20px;
         }
 
-        .footer-portal-text h2 {
-            font-size: 18px;
-            color: #000;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .footer-portal-text p {
-            font-size: 14px;
-            color: var(--text-grey);
-            margin: 0;
-        }
-
-        .footer-links-row-bilingual {
-            margin-bottom: 20px;
-        }
-
-        .footer-links-row-bilingual a {
-            color: var(--text-grey);
-            text-decoration: none;
-            margin-right: 15px;
-            position: relative;
-        }
-
-        .footer-links-row-bilingual a:not(:last-child)::after {
-            content: "|";
-            position: absolute;
-            right: -10px;
-            color: var(--border-grey);
-        }
-
-        .footer-links-row-bilingual a:hover {
-            color: var(--secondary-blue);
-        }
-
+        .footer-text h2 { margin: 0; font-size: 18px; }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar (Language Selector) -->
     <div class="top-bar">
-        <div class="container">
-            <span class="language-selector">Ћирилица</span>
-        </div>
+        <div class="container"><span class="language-selector">Ћирилица ▾</span></div>
     </div>
 
-    <!-- Header Section (eid.gov.rs replica) -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="header-logo-area">
-                    <div class="header-logo-circle">e</div>
-                    <div class="header-text-area">
-                        <h1>eid.gov.rs</h1>
-                        <p>Портал за електронску идентификацију</p>
-                    </div>
-                </div>
+                <!-- Using your eID logo from the images folder -->
+                <img src="images/eid_logo.png" alt="eID Logo" class="eid-main-logo">
             </div>
             <ul class="header-nav">
                 <li><a href="#">еГрађанин</a></li>
@@ -498,209 +199,65 @@
     </header>
 
     <main class="container">
-        
-        <!-- SEARCH SECTION (VISIBLE BY DEFAULT) -->
-        <div id="search-section">
-            <h1 class="page-header-title">Пријава за проверу е-визе / E-Visa Status Check Login</h1>
-            
-            <div class="search-box-official">
-                <form id="verification-form">
-                    <div class="input-group">
-                        <label for="applicationId">ИД апликације</label>
-                        <span class="input-subtext">(Адреса електронске поште или јединствени ИД апликације)</span>
-                        <input type="text" id="applicationId" placeholder="напр. 60911-42313-44450" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="passportNumber">Број путне исправе (пасоша)</label>
-                        <span class="input-subtext English">(Travel Document Number)</span>
-                        <input type="text" id="passportNumber" placeholder="напр. RK1820012" required>
-                    </div>
-                    
-                    <button type="submit" class="verify-btn-official">Пријавише се / Verify Status</button>
-                </form>
-                <p id="error-message" class="error-text" style="display: none;">Неважећи детаљи. Проверите унос. / Invalid details. Please check your entry.</p>
-            </div>
-        </div>
-
-        <!-- RESULTS SECTION (HIDDEN BY DEFAULT) -->
-        <div id="results-section" style="display: none;" class="page-card">
-            
-            <!-- Green Verification Bar (Official Style) -->
+        <!-- Results page (Visible) -->
+        <div class="page-card">
             <div class="verification-bar-official">
                 <span class="status-icon-check">✓</span>
-                <div class="status-text-bilingual">
-                    <span class="status-text-sr">Е-ВИЗА ЈЕ ВЕРИФИКОВАНА</span>
-                    <span class="status-text-en">E-VISA IS VERIFIED</span>
+                <div>
+                    <div>Е-ВИЗА ЈЕ ВЕРИФИКОВАНА</div>
+                    <div style="font-weight: normal; font-size: 14px;">E-VISA IS VERIFIED</div>
                 </div>
             </div>
 
             <div class="visa-data-container">
-                
-                <!-- Main Data (Left) -->
                 <div class="visa-data-main">
-                    
-                    <!-- Section 1: Application Details -->
-                    <div class="details-data-group">
-                        <h3 class="details-group-title">Детаљи апликације / Application Details</h3>
-                        <table class="bilingual-table">
-                            <tr>
-                                <td class="table-label">ИД апликације<span class="table-label-en">Application ID</span></td>
-                                <td class="table-value highlight-blue">60911-42313-44450</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Датум регистрације<span class="table-label-en">Date of Registration</span></td>
-                                <td class="table-value">30/04/2026</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Статус визе<span class="table-label-en">Visa Status</span></td>
-                                <td class="table-value success">ОДОБРЕНО / APPROVED</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <!-- Section 2: Personal Details -->
-                    <div class="details-data-group">
-                        <h3 class="details-group-title">Једина електронска е-виза издата за / The Only Electronic E-Visa issued To</h3>
-                        <table class="bilingual-table">
-                            <tr>
-                                <td class="table-label">Презиме Име<span class="table-label-en">Surname, Given name</span></td>
-                                <td class="table-value name-value">ALI REHMAN</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Датум рођења<span class="table-label-en">Date of Birth</span></td>
-                                <td class="table-value">15/10/2002</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Пол<span class="table-label-en">Gender</span></td>
-                                <td class="table-value">MALE / M</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">националност<span class="table-label-en">Nationality</span></td>
-                                <td class="table-value highlight-blue">PAKISTANI</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Број путне исправе<span class="table-label-en">Travel Document Number</span></td>
-                                <td class="table-value document-value">RK1820012</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <!-- Section 3: Visa Data -->
-                    <div class="details-data-group">
-                        <h3 class="details-group-title">Подаци о издатој електронској визи / Data on the issued Electronic E-visa</h3>
-                        <table class="bilingual-table">
-                            <tr>
-                                <td class="table-label">Важење електронске е-визе<span class="table-label-en">Validity of Electronic E-Visa</span></td>
-                                <td class="table-value highlight-blue">01/05/2026 to 30/07/2026</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Тип визе<span class="table-label-en">Visa Type</span></td>
-                                <td class="table-value">ТУРИСТИЧКА / TOURIST</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Трајање боравка (дана)<span class="table-label-en">Duration of Stay (Days)</span></td>
-                                <td class="table-value">90 Days</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Број тражених улазака<span class="table-label-en">Number of Entries Requested</span></td>
-                                <td class="table-value">Један улазак / Single Entry</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Датум одлуке<span class="table-label-en">E-Visa Approval Decision Date</span></td>
-                                <td class="table-value">01/05/2026</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">ИД број визе за један улазак<span class="table-label-en">Single Entry Visa ID Number</span></td>
-                                <td class="table-value highlight-blue">DJH303455</td>
-                            </tr>
-                            <tr>
-                                <td class="table-label">Код за верификацију визе<span class="table-label-en">eVisa Verification Code</span></td>
-                                <td class="table-value highlight-blue">b14a1170-1446-4317-9d3f-Ja50165</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <!-- Official Visa Notification Text (From document) -->
-                    <div class="official-notification">
-                        <p class="notification-title">Приликом преласка државне границе Републике Србије и током боравка у земьи страни држављани морају да покажу електронску визу у штампаном или електронском облику и важећу путну исправу.</p>
-                        <p class="notification-text">Електронска низа се издаје у складу са важећом путном исправом којом се доказује идентитет и јесте сматра се важећом само заједно са путном испраном; Електронска виза се издаје у складу са важећом путном исправом којом се доказује идентитет и јесто сматра со важећом само заједно са путном исправом.</p>
-                        
-                        <p class="notification-title English">When passing the State border of the Republic of Serbia and during stay in the country foreign citizens have to present the electronic visa in printed or electronic form and a valid travel document.</p>
-                        <p class="notification-text English">The electronic visa is issued in accordance with a valid travel document proving the identity, and its considered as valid only together with the travel document; Foreign citizen is responsibly for information provided in the application of electronic visa.</p>
-                    </div>
-
+                    <h3 style="color: var(--primary-blue);">Подаци о апликацији / Application Details</h3>
+                    <table class="bilingual-table">
+                        <tr>
+                            <td class="table-label">Презиме Име<span class="table-label-en">Surname, Given name</span></td>
+                            <td class="table-value">ALI REHMAN</td> <!--[cite: 1] -->
+                        </tr>
+                        <tr>
+                            <td class="table-label">Број путне исправе<span class="table-label-en">Passport Number</span></td>
+                            <td class="table-value">RK1820012</td> <!--[cite: 1] -->
+                        </tr>
+                        <tr>
+                            <td class="table-label">ИД апликације<span class="table-label-en">Application ID</span></td>
+                            <td class="table-value">60911-42313-44450</td> <!--[cite: 1] -->
+                        </tr>
+                        <tr>
+                            <td class="table-label">Важење е-визе<span class="table-label-en">Visa Validity</span></td>
+                            <td class="table-value">01/05/2026 to 30/07/2026</td> <!--[cite: 1] -->
+                        </tr>
+                    </table>
                 </div>
 
-                <!-- User Photo (Right) -->
                 <div class="visa-data-photo">
-                    <img src="user_photo.png" alt="Visa Holder Photo" class="visa-photo">
+                    <!-- Using your user photo from the images folder -->
+                    <img src="images/user_photo.png" alt="User Photo" class="visa-photo">
                 </div>
-
             </div>
-
-            <button onclick="window.location.reload();" class="back-btn-official">Назад на пријаву / Back to Login</button>
-
         </div>
     </main>
 
-    <!-- Footer Section (eid.gov.rs replica) -->
     <footer>
-        <div class="footer-top-bar" onclick="window.scrollTo(0, 0);">
-            <div class="container">
-                <span class="top-of-page-link">Врх стране ↑</span>
-            </div>
-        </div>
+        <div class="footer-top-bar"><div class="container">Врх стране ↑</div></div>
         <div class="footer-main-official">
             <div class="container">
-                <div class="footer-logo-official-area">
-                    <!-- Coat of Arms Placeholder - you would put an img tag here -->
-                    <div class="coat-of-arms-placeholder">ГРБ<br>Coat of Arms</div>
-                    <div class="footer-portal-text">
+                <div class="footer-logo-row">
+                    <!-- Using your Serbian crest from the images folder -->
+                    <img src="images/serbian_crest.png" alt="Republic of Serbia Crest" class="footer-crest">
+                    <div class="footer-text">
                         <h2>eid.gov.rs</h2>
                         <p>Портал за електронску идентификацију</p>
                     </div>
                 </div>
-                
-                <p>Веб презентација је лиценцирана под условима лиценце Creative Commons Ауторство-Некомерцијално-Без прерада 3.0 Србија. Веб пројекат <a href="#" style="text-decoration:none; color:inherit;">ite.gov.rs</a></p>
-                
-                <div class="footer-links-row-bilingual">
-                    <a href="#">Изјава о приватности / Privacy Policy</a>
-                    <a href="#">Услови коришћења / Terms of Use</a>
-                </div>
+                <p style="font-size: 12px; color: var(--text-grey);">
+                    Веб презентација је лиценцирана под условима лиценце Creative Commons. Веб пројекат ite.gov.rs
+                </p>
             </div>
         </div>
     </footer>
 
-    <script>
-        document.getElementById('verification-form').addEventListener('submit', function(event) {
-            // Prevent the form from actually submitting
-            event.preventDefault();
-
-            // 1. HARDCODED "CORRECT" VALUES FROM THE DOCUMENT
-            const correctApplicationId = "60911-42313-44450";
-            const correctPassportNumber = "RK1820012";
-
-            // 2. GET USER INPUT
-            const inputAppId = document.getElementById('applicationId').value.trim();
-            const inputPassport = document.getElementById('passportNumber').value.trim();
-            
-            const errorMessage = document.getElementById('error-message');
-
-            // 3. VERIFICATION LOGIC (Simulated)
-            if (inputAppId === correctApplicationId && inputPassport === correctPassportNumber) {
-                // MATCH: Hide search, show results
-                document.getElementById('search-section').style.display = 'none';
-                document.getElementById('results-section').style.display = 'block';
-                errorMessage.style.display = 'none';
-                
-                // Scroll to the top of the page content to see the green bar
-                document.querySelector('main').scrollIntoView();
-            } else {
-                // NO MATCH: Show error message
-                errorMessage.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
