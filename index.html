@@ -3,261 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Верификација Е-Визе | Портал за електронску идентификацију (eID.gov.rs)</title>
+    <title>Пријава - Портал за електронску идентификацију</title>
     <style>
-        /* === GLOBAL STYLES === */
+        /* OFFICIAL GOVERNMENT COLOR PALETTE */
         :root {
-            --primary-blue: #00305f;
-            --secondary-blue: #0056b3;
-            --light-grey: #f7f9fa;
-            --border-grey: #dde2e6;
-            --text-grey: #6c757d;
-            --success-green: #28a745;
-            --primary-green: #157347;
+            --eid-navy: #00305f;
+            --eid-blue: #0056b3;
+            --eid-green: #157347;
+            --eid-bg: #f8f9fa;
+            --eid-border: #dee2e6;
+            --eid-text: #212529;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--eid-bg);
+            color: var(--eid-text);
             margin: 0;
-            padding: 0;
-            background-color: var(--light-grey);
-            color: #333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 15px;
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 15px; }
+
+        /* HEADER REPLICA */
+        header { background: #fff; padding: 15px 0; border-bottom: 1px solid var(--eid-border); }
+        .header-flex { display: flex; align-items: center; justify-content: space-between; }
+        .logo-main { height: 50px; cursor: pointer; }
+        
+        .nav-sub { 
+            display: flex; 
+            list-style: none; 
+            padding: 10px 0; 
+            margin: 0; 
+            justify-content: center; 
+            border-top: 1px solid var(--eid-border);
+            font-size: 14px;
+        }
+        .nav-sub li { padding: 0 15px; border-right: 1px solid var(--eid-border); }
+        .nav-sub li:last-child { border-right: none; }
+        .nav-sub li a { text-decoration: none; color: #495057; font-weight: 500; }
+
+        /* LOGIN FORM BOX */
+        .login-card {
+            background: #fff;
+            border: 1px solid var(--eid-border);
+            border-radius: 4px;
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .section-title { font-size: 24px; color: var(--eid-navy); margin-bottom: 25px; text-align: center; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        .form-group input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ced4da; 
+            border-radius: 4px; 
+            font-size: 16px; 
             box-sizing: border-box;
         }
 
-        /* === TOP BAR === */
-        .top-bar {
-            background-color: #f7f9fa;
-            border-bottom: 1px solid var(--border-grey);
-            padding: 10px 0;
-            text-align: right;
-        }
-
-        .language-selector {
-            font-size: 14px;
-            color: #333;
-            margin-right: 15px;
-        }
-
-        /* === HEADER === */
-        header {
-            background-color: #fff;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-grey);
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .eid-main-logo {
-            height: 60px; /* Adjust based on your image aspect ratio */
-            width: auto;
-            margin-right: 20px;
-        }
-
-        .header-nav {
-            margin-top: 15px;
-            border-top: 1px solid var(--border-grey);
-            padding: 15px 0 0 0;
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-
-        .header-nav li {
-            font-size: 15px;
-            padding: 0 12px;
-            border-right: 1px solid var(--border-grey);
-        }
-
-        .header-nav li:last-child { border-right: none; }
-        .header-nav li a { text-decoration: none; color: #333; }
-
-        /* === CONTENT === */
-        main { padding: 30px 0; flex: 1; }
-        
-        .page-card {
-            background: #fff;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-radius: 8px;
-        }
-
-        .verification-bar-official {
-            background-color: var(--success-green);
-            color: white;
-            padding: 18px 25px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .status-icon-check { font-size: 28px; margin-right: 18px; }
-
-        .visa-data-container { display: flex; gap: 30px; }
-        .visa-data-main { flex: 3; }
-        .visa-data-photo { flex: 1; text-align: right; }
-
-        .visa-photo {
-            width: 160px;
-            border: 4px solid #eee;
-            padding: 5px;
-            background: #fff;
-        }
-
-        .bilingual-table {
+        .btn-primary {
             width: 100%;
-            border-collapse: collapse;
-            border: 1px solid var(--border-grey);
-            margin-bottom: 20px;
-        }
-
-        .bilingual-table td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border-grey);
-        }
-
-        .table-label {
-            background-color: #f9f9f9;
-            width: 40%;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .table-label-en {
-            display: block;
-            font-weight: normal;
-            color: var(--text-grey);
-            font-style: italic;
-        }
-
-        .table-value { font-weight: bold; color: var(--primary-blue); }
-
-        /* === FOOTER === */
-        .footer-top-bar {
-            background-color: var(--primary-blue);
+            background-color: var(--eid-green);
             color: white;
-            padding: 10px 0;
-            text-align: right;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
-        .footer-main-official {
-            background-color: #f7f9fa;
-            border-top: 1px solid var(--border-grey);
-            padding: 30px 0;
-        }
-
-        .footer-logo-row {
+        /* RESULT VIEW (HIDDEN INITIALLY) */
+        #result-view { display: none; padding: 40px 0; }
+        
+        .success-banner {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 18px;
         }
 
-        .footer-crest {
-            height: 70px;
-            margin-right: 20px;
+        .visa-content { 
+            background: white; 
+            padding: 30px; 
+            border: 1px solid var(--eid-border); 
+            display: flex; 
+            gap: 40px;
         }
 
-        .footer-text h2 { margin: 0; font-size: 18px; }
+        .details-table { width: 100%; border-collapse: collapse; }
+        .details-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .label-cell { background: #f9f9f9; width: 40%; font-weight: 600; font-size: 13px; }
+        .val-cell { font-weight: 700; color: var(--eid-navy); }
+        .lang-en { display: block; font-weight: 400; color: #6c757d; font-style: italic; font-size: 12px; }
+
+        .photo-box { text-align: center; }
+        .photo-box img { width: 180px; border: 1px solid var(--eid-border); padding: 5px; background: #fff; }
+
+        /* FOOTER REPLICA */
+        footer { margin-top: auto; border-top: 1px solid var(--eid-border); background: #f8f9fa; padding: 40px 0; }
+        .footer-flex { display: flex; align-items: flex-start; gap: 20px; }
+        .footer-crest { height: 80px; }
+        .footer-text h3 { margin: 0; font-size: 20px; }
+        .footer-text p { font-size: 14px; color: #6c757d; }
+
+        .error-msg { color: #dc3545; font-size: 14px; margin-top: 10px; display: none; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="container"><span class="language-selector">Ћирилица ▾</span></div>
-    </div>
-
     <header>
         <div class="container">
-            <div class="header-content">
-                <!-- Using your eID logo from the images folder -->
-                <img src="images/eid_logo.png" alt="eID Logo" class="eid-main-logo">
+            <div class="header-flex">
+                <img src="images/eid_logo.png" class="logo-main" alt="eID Logo">
             </div>
-            <ul class="header-nav">
-                <li><a href="#">еГрађанин</a></li>
-                <li><a href="#">Потпис у клауду</a></li>
-                <li><a href="#">Помоћ</a></li>
-                <li><a href="#">Контакт</a></li>
-                <li><a href="#">Портал еУправа</a></li>
-                <li><a href="#">Назад</a></li>
-            </ul>
         </div>
+        <ul class="nav-sub">
+            <li><a href="#">еГрађанин</a></li>
+            <li><a href="#">Помоћ</a></li>
+            <li><a href="#">Контакт</a></li>
+            <li><a href="#">Назад</a></li>
+        </ul>
     </header>
 
     <main class="container">
-        <!-- Results page (Visible) -->
-        <div class="page-card">
-            <div class="verification-bar-official">
-                <span class="status-icon-check">✓</span>
+        <!-- LOGIN VIEW -->
+        <div id="login-view">
+            <div class="login-card">
+                <h1 class="section-title">Пријава за верификацију визе</h1>
+                <form id="verifyForm">
+                    <div class="form-group">
+                        <label>ИД апликације / Application ID</label>
+                        <input type="text" id="appId" placeholder="60911-42313-44450" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Број пасоша / Passport Number</label>
+                        <input type="text" id="passId" placeholder="RK1820012" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Пријавише се / Verify</button>
+                    <p id="errorMsg" class="error-msg">Неисправни подаци. Покушајте поново. / Invalid credentials.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- RESULT VIEW -->
+        <div id="result-view">
+            <div class="success-banner">
+                <span style="font-size: 24px; margin-right: 15px;">✓</span>
                 <div>
-                    <div>Е-ВИЗА ЈЕ ВЕРИФИКОВАНА</div>
-                    <div style="font-weight: normal; font-size: 14px;">E-VISA IS VERIFIED</div>
+                    Е-ВИЗА ЈЕ УСПЕШНО ВЕРИФИКОВАНА
+                    <br><span style="font-weight: normal; font-size: 14px;">E-VISA SUCCESSFULLY VERIFIED</span>
                 </div>
             </div>
 
-            <div class="visa-data-container">
-                <div class="visa-data-main">
-                    <h3 style="color: var(--primary-blue);">Подаци о апликацији / Application Details</h3>
-                    <table class="bilingual-table">
+            <div class="visa-content">
+                <div style="flex: 2;">
+                    <h2 style="color: var(--eid-navy); border-bottom: 2px solid var(--eid-navy); padding-bottom: 10px;">Детаљи визе / Visa Details</h2>
+                    <table class="details-table">
                         <tr>
-                            <td class="table-label">Презиме Име<span class="table-label-en">Surname, Given name</span></td>
-                            <td class="table-value">ALI REHMAN</td> <!--[cite: 1] -->
+                            <td class="label-cell">Презиме и име<span class="lang-en">Surname and Given name</span></td>
+                            <td class="val-cell">ALI REHMAN</td> <!-- -->
                         </tr>
                         <tr>
-                            <td class="table-label">Број путне исправе<span class="table-label-en">Passport Number</span></td>
-                            <td class="table-value">RK1820012</td> <!--[cite: 1] -->
+                            <td class="label-cell">Датум рођења<span class="lang-en">Date of Birth</span></td>
+                            <td class="val-cell">15/10/2002</td> <!--[cite: 1] -->
                         </tr>
                         <tr>
-                            <td class="table-label">ИД апликације<span class="table-label-en">Application ID</span></td>
-                            <td class="table-value">60911-42313-44450</td> <!--[cite: 1] -->
+                            <td class="label-cell">Број путне исправе<span class="lang-en">Travel Document Number</span></td>
+                            <td class="val-cell">RK1820012</td> <!--[cite: 1] -->
                         </tr>
                         <tr>
-                            <td class="table-label">Важење е-визе<span class="table-label-en">Visa Validity</span></td>
+                            <td class="label-cell">Важење е-визе<span class="lang-en">Validity of E-Visa</span></td>
                             <td class="table-value">01/05/2026 to 30/07/2026</td> <!--[cite: 1] -->
                         </tr>
+                        <tr>
+                            <td class="label-cell">Статус<span class="lang-en">Status</span></td>
+                            <td class="val-cell" style="color: #157347;">ОДОБРЕНО / APPROVED</td>
+                        </tr>
                     </table>
+                    <button onclick="location.reload()" style="margin-top: 20px; cursor: pointer;">Назад / Back</button>
                 </div>
-
-                <div class="visa-data-photo">
-                    <!-- Using your user photo from the images folder -->
-                    <img src="images/user_photo.png" alt="User Photo" class="visa-photo">
+                <div class="photo-box">
+                    <img src="images/user_photo.png" alt="Visa Photo">
+                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Званична фотографија / Official Photo</p>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="footer-top-bar"><div class="container">Врх стране ↑</div></div>
-        <div class="footer-main-official">
-            <div class="container">
-                <div class="footer-logo-row">
-                    <!-- Using your Serbian crest from the images folder -->
-                    <img src="images/serbian_crest.png" alt="Republic of Serbia Crest" class="footer-crest">
-                    <div class="footer-text">
-                        <h2>eid.gov.rs</h2>
-                        <p>Портал за електронску идентификацију</p>
-                    </div>
+        <div class="container">
+            <div class="footer-flex">
+                <img src="images/serbian_crest.png" class="footer-crest" alt="Crest">
+                <div class="footer-text">
+                    <h3>eid.gov.rs</h3>
+                    <p>Портал за електронску идентификацију Републике Србије</p>
+                    <p style="margin-top: 10px; font-size: 12px;">© 2026 Канцеларија за ИТ и еУправу</p>
                 </div>
-                <p style="font-size: 12px; color: var(--text-grey);">
-                    Веб презентација је лиценцирана под условима лиценце Creative Commons. Веб пројекат ite.gov.rs
-                </p>
             </div>
         </div>
     </footer>
 
+    <script>
+        document.getElementById('verifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const appId = document.getElementById('appId').value;
+            const passId = document.getElementById('passId').value;
+
+            // Verification matching your PDF details[cite: 1]
+            if(appId === '60911-42313-44450' && passId === 'RK1820012') {
+                document.getElementById('login-view').style.display = 'none';
+                document.getElementById('result-view').style.display = 'block';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
